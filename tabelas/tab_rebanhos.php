@@ -16,19 +16,6 @@ if (mysqli_connect_errno()) {
  
 $query = "SELECT nome, idempresa, idrebanho, descricao FROM rebanhos ORDER BY idrebanho";
 
-/*if ($result = $mysqli->query($query)) {
-
-    
-    while ($row = $result->fetch_assoc()) {
-        printf ("%s (%s)\n", $row["nome"], $row["idempresa"]);
-    }
-
-    
-    $result->close();
-}
-*/
-
-
 if ($result = $mysqli->query($query)) {
     echo "<div class='table-responsive'>";
     echo "<table id='table' class='table table-striped'>
