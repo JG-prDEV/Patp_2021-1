@@ -36,5 +36,8 @@
     <input name="cadastrar" type="submit" id="cadastrar" class="btn btn-primary" value="Enviar">
   </div>
 </form>
+
+      
+
 </body>
 </html>
