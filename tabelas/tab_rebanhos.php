@@ -1,22 +1,19 @@
+<script>
+                  function AtualizaPage() {
+                    window.location.reload();
+                  }
+                </script>
 <?php
-/*
-$servername = "localhost";
-$database = "teste_php";
-$username = "root";
-$password = "";
-*/
-
-$mysqli = new mysqli("localhost", "root", "", "teste_php");
-
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+// Create connection
+$conn = new mysqli("localhost", "root", "", "teste_php");
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
- 
+
 $query = "SELECT nome, idempresa, idrebanho, descricao FROM rebanhos ORDER BY idrebanho";
 
-if ($result = $mysqli->query($query)) {
+if ($result = $conn->query($query)) {
     echo "<div class='table-responsive'>";
     echo "<table id='table' class='table table-striped'>
     <tr>
@@ -33,14 +30,29 @@ if ($result = $mysqli->query($query)) {
                 <td>".$row["idempresa"]."</td>
                 <td>".$row["descricao"]."</td>
                 <th>
-                    <button type='button' class='btn btn-primary'>Editar</button>
-                    <button type='button' class='btn btn-primary'>Excluir</button>                
+                    <script>
+                    function AtualizaPage() {
+                        window.location.reload();
+                    }
+                    </script>
+                    <form method='post'> 
+                        <input  type='hidden' name='id' value='".$row['idrebanho']."'>
+                        <button onClick='AtualizaPage()' type='submit' class='btn btn-primary' name='deletar' value='deletar'>Deletar</button>
+                    </form>               
                 </th>
             </tr>";
-    }
+
+            if (isset($_POST['id'])) {
+                 $sql = "DELETE FROM rebanhos WHERE idrebanho =".$_POST['id'];
+
+                if ($conn->query($sql) === TRUE) { 
+                } 
+            }
+        }
     echo "</table>";
     echo "</div>";
 } 
-$mysqli->close();
+$conn->close();
 
 ?>
+      

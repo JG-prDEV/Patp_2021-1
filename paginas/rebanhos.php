@@ -70,6 +70,12 @@
               <div class="tab-content">
                 <div id="home" class="container tab-pane active"><br>
                 <h4>Rebanhos Cadastrados</h4>
+                <script>
+                  function AtualizaPage() {
+                    window.location.reload();
+                  }
+                </script>
+                <button onClick='AtualizaPage()' class='btn btn-primary'>Atualizar Tabela</button>
                   <?php
                     require('../tabelas/tab_rebanhos.php'); 
                   ?>
